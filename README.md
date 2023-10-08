@@ -25,7 +25,7 @@ Detect device from a user agent string:
 ```php
 use Reefki\DeviceDetector\Device;
 
-Device::detect($request->userAgent());
+$device = Device::detect($request->userAgent());
 ```
 
 Detect device from a user agent string and optional hints:
@@ -33,7 +33,7 @@ Detect device from a user agent string and optional hints:
 ```php
 use Reefki\DeviceDetector\Device;
 
-Device::detect($request->userAgent(), $request->server());
+$device = Device::detect($request->userAgent(), $request->server());
 ```
 
 Detect device from a request instance:
@@ -41,14 +41,30 @@ Detect device from a request instance:
 ```php
 use Reefki\DeviceDetector\Device;
 
-Device::detectRequest($request);
+$device = Device::detectRequest($request);
 ```
 
-You can also detect from the request instance directly:
+Detect device directly from a request instance:
 
 ```php
-$request->device();
+$device = $request->device();
 ```
+
+All of the above methods wil return a `DeviceDetector\DeviceDetector` instance which you can use to get the information about the device:
+
+```php
+if ($device->isBot()) {
+    $botInfo = $device->getBot();
+} else {
+    $clientInfo = $device->getClient();
+    $osInfo = $device->getOs();
+    $device = $device->getDeviceName();
+    $brand = $device->getBrandName();
+    $model = $device->getModel();
+}
+```
+
+Read the [Matomo's Universal Device Detection](https://github.com/matomo-org/device-detector/blob/master/README.md) library readme for more information on how to use the returned instance.
 
 ## Testing
 
