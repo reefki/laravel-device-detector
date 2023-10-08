@@ -1,0 +1,46 @@
+{
+    "name": "reefki/laravel-device-detector",
+    "description": "Laravel wrapper for Matomo's Universal Device Detection library.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rifki Aria Gumelar",
+            "email": "rifki@rifki.net"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^9.0|^10.0",
+        "matomo/device-detector": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0|^8.0",
+        "phpunit/phpunit": "^10.0",
+        "laravel/pint": "^1.13",
+        "phpstan/phpstan": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reefki\\DeviceDetector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Reefki\\DeviceDetector\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Reefki\\DeviceDetector\\DeviceDetectorServiceProvider"
+            ],
+            "aliases": {
+                "Device": "Reefki\\DeviceDetector\\Device"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "ftest": "vendor/bin/phpunit --filter"
+    }
+}
