@@ -9,14 +9,21 @@ use Illuminate\Http\Request;
 class DeviceDetector
 {
     /**
-     * Create a new instance.
+     * The cache repository instance.
+     *
+     * @var \Reefki\DeviceDetector\CacheRepository
+     */
+    protected CacheRepository $cache;
+
+    /**
+     * Create a new device detector instance.
      *
      * @param  \Reefki\DeviceDetector\CacheRepository  $cache
      * @return void
      */
-    public function __construct(
-        protected CacheRepository $cache
-    ) {
+    public function __construct(CacheRepository $cache)
+    {
+        $this->cache = $cache;
     }
 
     /**

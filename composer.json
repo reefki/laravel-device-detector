@@ -10,12 +10,15 @@
         }
     ],
     "require": {
-        "laravel/framework": "^9.0|^10.0|^11.0|^12.0",
+        "php": "^8.1",
+        "illuminate/cache": "^10.0|^11.0|^12.0",
+        "illuminate/http": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
         "matomo/device-detector": "^6.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0|^8.0",
-        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.5|^11.0",
         "laravel/pint": "^1.13",
         "phpstan/phpstan": "^1.10"
     },
@@ -39,8 +42,15 @@
             }
         }
     },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "ftest": "vendor/bin/phpunit --filter"
+        "ftest": "vendor/bin/phpunit --filter",
+        "lint": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse"
     }
 }

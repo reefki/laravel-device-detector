@@ -1,3 +1,7 @@
 {
-    "preset": "psr12"
+    "preset": "laravel",
+    "rules": {
+        "no_superfluous_phpdoc_tags": false,
+        "phpdoc_no_empty_return": false
+    }
 }
