@@ -4,19 +4,38 @@ on: [push, pull_request]
 
 jobs:
   tests:
-    name: Tests
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.1, 8.2, 8.3, 8.4]
+        laravel: [10, 11, 12]
+        exclude:
+          - php: 8.1
+            laravel: 12
+          - php: 8.1
+            laravel: 11
+
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip
+          coverage: none
 
       - name: Install dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        env:
+          LARAVEL_VERSION: ${{ matrix.laravel }}
+        run: |
+          composer require "illuminate/support:^${LARAVEL_VERSION}.0" "illuminate/cache:^${LARAVEL_VERSION}.0" "illuminate/http:^${LARAVEL_VERSION}.0" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: vendor/bin/phpunit
