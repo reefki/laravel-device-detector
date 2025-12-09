@@ -2,20 +2,11 @@
 
 namespace Reefki\DeviceDetector\Tests;
 
+use Orchestra\Testbench\TestCase as BaseTestCase;
 use Reefki\DeviceDetector\DeviceDetectorServiceProvider;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends BaseTestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /**
      * Get package providers.
      *
@@ -27,5 +18,16 @@ class TestCase extends \Orchestra\Testbench\TestCase
         return [
             DeviceDetectorServiceProvider::class,
         ];
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app): void
+    {
+        $app['config']->set('cache.default', 'array');
     }
 }
