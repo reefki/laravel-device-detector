@@ -58,7 +58,7 @@ if ($device->isBot()) {
 } else {
     $clientInfo = $device->getClient();
     $osInfo = $device->getOs();
-    $device = $device->getDeviceName();
+    $deviceName = $device->getDeviceName();
     $brand = $device->getBrandName();
     $model = $device->getModel();
 }
