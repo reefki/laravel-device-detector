@@ -38,6 +38,8 @@ jobs:
         env:
           LARAVEL_VERSION: ${{ matrix.laravel }}
         run: |
+          # Laravel 10 and 11 are EOL and every release carries an advisory that Composer blocks by default
+          composer config policy.advisories.block false
           composer require "illuminate/support:^${LARAVEL_VERSION}.0" "illuminate/cache:^${LARAVEL_VERSION}.0" "illuminate/http:^${LARAVEL_VERSION}.0" --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
