@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-10-22
+
+### Added
+- Support for Laravel 13
+- GitHub Actions matrix testing for Laravel 13 (PHP 8.3+)
+
+### Changed
+- Updated `orchestra/testbench` to `^8.0|^9.0|^10.0|^11.0`
+
 ## [2.0.0] - 2024-12-10
 
 ### Added
